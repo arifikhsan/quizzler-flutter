@@ -39,9 +39,7 @@ class QuizBrain {
 
   String getQuestionText() => _questions[_questionNumber].text;
 
-  bool getQuestionAnswer() {
-    return _questions[_questionNumber].answer;
-  }
+  bool getQuestionAnswer() => _questions[_questionNumber].answer;
 
   bool isFinished() => _questionNumber >= _questions.length - 1;
 
