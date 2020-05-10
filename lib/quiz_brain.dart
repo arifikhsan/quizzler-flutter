@@ -37,7 +37,7 @@ class QuizBrain {
     }
   }
 
-  String getQuestionText() => _questions[_questionNumber].text;
+  Future<String> getQuestionText() async => _questions[_questionNumber].text;
 
   bool getQuestionAnswer() => _questions[_questionNumber].answer;
 

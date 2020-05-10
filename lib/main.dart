@@ -63,8 +63,14 @@ class _QuizPageState extends State<QuizPage> {
     });
   }
 
+  aa() async {
+    var a = await quizBrain.getQuestionText();
+    print(a);
+  }
+
   @override
   Widget build(BuildContext context) {
+    aa();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -75,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(),
+                'quizBrain.getQuestionText()',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
