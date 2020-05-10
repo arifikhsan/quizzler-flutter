@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/quiz_brain.dart';
 
 void main() => runApp(Quizzler());
+
+QuizBrain quizBrain = QuizBrain();
 
 class Quizzler extends StatelessWidget {
   @override
@@ -34,15 +37,15 @@ class _QuizPageState extends State<QuizPage> {
       Icons.close,
       color: Colors.red,
     ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
   ];
+
+  List<bool> answers = [
+    false,
+    true,
+    true,
+  ];
+
+  int questionNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                quizBrain.getQuestionText() ?? '',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -80,14 +83,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                setState(() {
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ),
-                  );
-                });
+                if (quizBrain.getQuestionAnswer()) {
+                  print('you got it right');
+                } else {
+                  print('you got it wrong');
+                }
+                quizBrain.nextQuestion();
               },
             ),
           ),
@@ -105,14 +106,19 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                if (quizBrain.getQuestionAnswer()) {
+                  print('you got it right');
+                } else {
+                  print('you got it wrong');
+                }
+                quizBrain.nextQuestion();
               },
             ),
           ),
         ),
-        Row(
-          children: scoreKeeper,
-        ),
+//        Row(
+//          children: scoreKeeper,
+//        ),
       ],
     );
   }
